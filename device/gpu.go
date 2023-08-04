@@ -83,6 +83,10 @@ func GetGpu(gpu *NodeInfo) {
 }
 
 func convertName(name string) string {
+	if strings.Contains(name, "-PCIE") {
+		index := strings.Index(name, "-PCIE")
+		return name[:index]
+	}
 	if strings.Contains(name, "NVIDIA") {
 		if strings.Contains(name, "Tesla") {
 			return strings.Replace(name, "Tesla ", "", 1)
